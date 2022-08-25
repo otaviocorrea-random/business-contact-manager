@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Productive properties</h1>
+
+<div id="productive_properties">
+  <% @productive_properties.each do |productive_property| %>
+    <%= render productive_property %>
+    <p>
+      <%= link_to "Show this productive property", productive_property %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New productive property", new_productive_property_path %>

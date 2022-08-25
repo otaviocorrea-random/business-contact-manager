@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :productive_properties
   resources :business_contacts
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
