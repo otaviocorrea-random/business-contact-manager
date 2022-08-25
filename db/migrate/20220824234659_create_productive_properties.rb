@@ -1,7 +1,7 @@
 class CreateProductiveProperties < ActiveRecord::Migration[7.0]
   def change
     create_table :productive_properties do |t|
-      t.references :business_contacts, null: false
+      t.references :business_contact, null: false
       t.string :name, null: false
       t.integer :area, null: false
       t.integer :space_between_rows, null: false
