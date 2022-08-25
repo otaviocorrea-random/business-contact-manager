@@ -71,3 +71,5 @@ group :test do
   gem "webdrivers"
 end
 gem "rspec-rails", group: [:development, :test]
+
+gem "factory_bot", "~> 6.2"
