@@ -13,7 +13,7 @@
 ActiveRecord::Schema[7.0].define(version: 2022_08_25_003121) do
   create_table "business_contacts", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", null: false
-    t.integer "type"
+    t.integer "kind", default: 0, null: false
     t.string "email", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -37,7 +37,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_25_003121) do
   end
 
   create_table "productive_properties", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.bigint "business_contacts_id", null: false
+    t.bigint "business_contact_id", null: false
     t.string "name", null: false
     t.integer "area", null: false
     t.integer "space_between_rows", null: false
@@ -46,7 +46,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_25_003121) do
     t.integer "space_between_plants_unit", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["business_contacts_id"], name: "index_productive_properties_on_business_contacts_id"
+    t.index ["business_contact_id"], name: "index_productive_properties_on_business_contact_id"
   end
 
 end
