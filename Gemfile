@@ -73,3 +73,5 @@ end
 gem "rspec-rails", group: [:development, :test]
 
 gem "factory_bot", "~> 6.2"
+
+gem "faker", "~> 2.22"
