@@ -1,10 +1,10 @@
 FactoryBot.define do
-  faker_name = Faker::Name.name
-  faker_email = Faker::Internet.safe_email(name: faker_name)
+  faker_name = Faker::Name.unique.name
+  faker_email = Faker::Internet.unique.safe_email(name: faker_name)
 
   factory :business_contact do
-    name { faker_name }
-    email { faker_email }
+    name { Faker::Name.unique.name }
+    email { Faker::Internet.unique.safe_email(name: name) }
 
     trait :client do
       kind { 'client' }

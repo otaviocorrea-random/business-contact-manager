@@ -7,11 +7,11 @@ class BusinessContact < ApplicationRecord
 
   private
   def max_productive_properties
-    kind == :provider ? 3 : 0
+    provider? ? 3 : 0
   end
 
   def max_productive_properties_validation
-    if productive_properties.size > max_productive_properties
+    if productive_properties.reload.size > max_productive_properties
       errors.add(:productive_properties, "can't be more than #{max_productive_properties} for #{kind}")
     end
   end
