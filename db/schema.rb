@@ -27,13 +27,13 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_25_003121) do
   end
 
   create_table "plant_species_productive_properties", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.bigint "plant_species_id", null: false
-    t.bigint "productive_properties_id", null: false
+    t.bigint "plant_specy_id", null: false
+    t.bigint "productive_property_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["plant_species_id", "productive_properties_id"], name: "plant_species_productive_properties_unique_key", unique: true
-    t.index ["plant_species_id"], name: "plant_specy_on_productive_property_relation"
-    t.index ["productive_properties_id"], name: "productive_property_on_plant_specy_relation"
+    t.index ["plant_specy_id", "productive_property_id"], name: "plant_species_productive_properties_unique_key", unique: true
+    t.index ["plant_specy_id"], name: "plant_specy_on_productive_property_relation"
+    t.index ["productive_property_id"], name: "productive_property_on_plant_specy_relation"
   end
 
   create_table "productive_properties", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
