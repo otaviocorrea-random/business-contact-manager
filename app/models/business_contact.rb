@@ -1,9 +1,14 @@
 class BusinessContact < ApplicationRecord
+  include RegexHelper
+  
   enum :kind, [:client, :provider], scopes: false, default: :client
   
   has_many :productive_properties, dependent: :destroy
-
   validate :max_productive_properties_validation
+
+  validates :name, presence: true
+  validates :email, presence: true, uniqueness: true, format: { with: VALID_EMAIL_REGEXP }
+  validates :kind, presence: true, inclusion: { in: kinds.keys }
 
   private
   def max_productive_properties
