@@ -11,10 +11,7 @@ class BusinessContact < ApplicationRecord
   validates :kind, presence: true, inclusion: { in: kinds.keys }
 
   def formated_kind_name 
-    {
-      client: I18n.t('words.client'),
-      provider: I18n.t('words.provider')
-    }[kind.to_sym]
+    I18n.t("words.#{kind}")
   end
 
   private
