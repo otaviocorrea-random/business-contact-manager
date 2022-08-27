@@ -4,6 +4,7 @@ class BusinessContactsController < ApplicationController
   # GET /business_contacts or /business_contacts.json
   def index
     @business_contacts = BusinessContact.all
+    set_filters
   end
 
   # GET /business_contacts/1 or /business_contacts/1.json
@@ -66,5 +67,9 @@ class BusinessContactsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def business_contact_params
       params.require(:business_contact).permit(:name, :kind, :email)
+    end
+
+    def set_filters
+      @business_contacts = @business_contacts.order(:name)
     end
 end

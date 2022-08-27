@@ -65,6 +65,6 @@ class ProductivePropertiesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def productive_property_params
-      params.require(:productive_property).permit(:name, :area, :space_between_rows, :space_between_rows_unit, :space_between_plants, :space_between_plants_unit)
+      params.require(:productive_property).permit(:business_contact_id, :name, :area, :space_between_rows, :space_between_rows_unit, :space_between_plants, :space_between_plants_unit)
     end
 end

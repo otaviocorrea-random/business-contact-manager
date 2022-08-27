@@ -1,3 +1,7 @@
+<%
+  contact_select_options = BusinessContact.all.map { |contact| [contact.name, contact.id] }
+  messure_unit_select_options = [['Centimetros', :cm], ['Metros', :m]]
+%>
 <%= form_with(model: productive_property) do |form| %>
   <% if productive_property.errors.any? %>
     <div style="color: red">
@@ -10,6 +14,8 @@
       </ul>
     </div>
   <% end %>
+
+  <%= form.select :business_contact_id, contact_select_options %>
 
   <div>
     <%= form.label :name, style: "display: block" %>
@@ -28,7 +34,7 @@
 
   <div>
     <%= form.label :space_between_rows_unit, style: "display: block" %>
-    <%= form.number_field :space_between_rows_unit %>
+    <%= form.select :space_between_rows_unit, messure_unit_select_options %>
   </div>
 
   <div>
@@ -38,7 +44,7 @@
 
   <div>
     <%= form.label :space_between_plants_unit, style: "display: block" %>
-    <%= form.number_field :space_between_plants_unit %>
+    <%= form.select :space_between_plants_unit, messure_unit_select_options %>
   </div>
 
   <div>
