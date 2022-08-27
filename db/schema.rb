@@ -24,6 +24,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_25_003121) do
     t.string "name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_plant_species_on_name", unique: true
   end
 
   create_table "plant_species_productive_properties", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
