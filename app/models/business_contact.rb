@@ -14,11 +14,11 @@ class BusinessContact < ApplicationRecord
     I18n.t("words.#{kind}")
   end
 
-  private
   def max_productive_properties
     provider? ? 3 : 0
   end
 
+  private
   def max_productive_properties_validation
     if productive_properties.reload.size > max_productive_properties
       errors.add(:productive_properties, "can't be more than #{max_productive_properties} for #{kind}")

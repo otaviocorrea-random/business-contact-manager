@@ -47,7 +47,7 @@ RSpec.describe BusinessContact, type: :model do
     let!(:productive_property1) { create(:productive_property, business_contact: provider) }
     let!(:productive_property2) { create(:productive_property, business_contact: provider) }
     let!(:productive_property3) { create(:productive_property, business_contact: provider) }
-    let(:productive_property4) { create(:productive_property, business_contact: provider) }
+    let(:productive_property4) { build(:productive_property, business_contact: provider) }
 
     it 'have 3 productive properties' do
       expect(provider.productive_properties.count).to eq(3)

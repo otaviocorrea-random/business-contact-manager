@@ -35,7 +35,8 @@ RSpec.describe ProductiveProperty, type: :model do
 
     it 'cannot add more than 3 properties for a provider' do
       create_list(:productive_property, 3, business_contact: provider)
-      expect(create(:productive_property, business_contact: provider)).to_not be_valid
+      last_property = build(:productive_property, business_contact: provider)
+      expect(last_property).to_not be_valid
     end
   end
 
