@@ -1,14 +1,27 @@
-<p style="color: green"><%= notice %></p>
-
-<h1>Plant species</h1>
-
-<div id="plant_species">
-  <% @plant_species.each do |plant_specy| %>
-    <%= render plant_specy %>
-    <p>
-      <%= link_to "Show this plant specy", plant_specy %>
-    </p>
-  <% end %>
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+  <h1 class="h2">Gerenciar</h1>
+  <div class="btn-toolbar mb-2 mb-md-0">
+    <%= link_to "Adicionar", new_plant_specy_path, class: 'btn btn-sm btn-outline-secondary' %>
+  </div>
 </div>
 
-<%= link_to "New plant specy", new_plant_specy_path %>
+<table id="plant_species" class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">Nome da Planta</th>
+      <th scope="col">#</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @plant_species.each do |plant_specy| %>
+      <tr>
+        <td scope="row"><%= plant_specy.name %></td>
+        <td>
+          <%= link_to "Exibir", plant_specy %> | 
+          <%= link_to "Editar", edit_plant_specy_path(plant_specy) %> | 
+          <%= link_to "Excluir", plant_specy, method: :delete, data: { confirm: "Você tem certeza?" } %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
