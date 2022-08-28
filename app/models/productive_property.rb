@@ -6,7 +6,7 @@ class ProductiveProperty < ApplicationRecord
 
   belongs_to :business_contact, validate: true, touch: true
   validates_associated :business_contact, after: :save
-  validate :max_productive_properties_validation, on: [:create, :update]
+  validate :max_productive_properties_validation, on: [:create]
   
   has_and_belongs_to_many :plant_species
 

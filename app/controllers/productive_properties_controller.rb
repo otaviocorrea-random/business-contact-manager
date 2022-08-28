@@ -1,9 +1,11 @@
 class ProductivePropertiesController < ApplicationController
+  skip_before_action :verify_authenticity_token
   before_action :set_productive_property, only: %i[ show edit update destroy ]
 
   # GET /productive_properties or /productive_properties.json
   def index
     @productive_properties = ProductiveProperty.all
+    set_filters
   end
 
   # GET /productive_properties/1 or /productive_properties/1.json
@@ -42,7 +44,7 @@ class ProductivePropertiesController < ApplicationController
         format.json { render :show, status: :ok, location: @productive_property }
       else
         format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @productive_property.errors, status: :unprocessable_entity }
+        format.json { render json: {errors: @productive_property.errors.full_messages}, status: :unprocessable_entity }
       end
     end
   end
@@ -66,5 +68,9 @@ class ProductivePropertiesController < ApplicationController
     # Only allow a list of trusted parameters through.
     def productive_property_params
       params.require(:productive_property).permit(:business_contact_id, :name, :area, :space_between_rows, :space_between_rows_unit, :space_between_plants, :space_between_plants_unit)
+    end
+
+    def set_filters
+      @productive_properties = @productive_properties.where(business_contact_id: params[:business_contact_id]) if params[:business_contact_id].present?
     end
 end
