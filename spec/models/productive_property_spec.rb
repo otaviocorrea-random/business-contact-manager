@@ -4,6 +4,7 @@ RSpec.describe ProductiveProperty, type: :model do
   it 'is valid with valid attributes' do
     productive_property = described_class.new(
       name: 'Teste',
+      area: 100,
       space_between_rows: 1,
       space_between_rows_unit: :cm,
       space_between_plants: 1,
