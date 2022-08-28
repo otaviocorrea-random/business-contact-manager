@@ -1,34 +1,18 @@
 <div id="<%= dom_id productive_property %>">
   <p>
-    <strong>Name:</strong>
-    <%= productive_property.name %>
+    <strong>Nome:</strong>
+    <%= productive_property.name %><br>
+ 
+    <strong>Área:</strong>
+    <%= productive_property.area %><br>
+
+    <strong>Espaço entre colunas:</strong>
+    <%= productive_property.space_between_rows %> <%= productive_property.space_between_rows_unit %><br>
+
+    <strong>Espaço entre plantas:</strong>
+    <%= productive_property.space_between_plants %> <%= productive_property.space_between_plants_unit %><br>
+
+    <strong>Nº de Plantas:</strong>
+    <%= productive_property.number_of_plants %><br>
   </p>
-
-  <p>
-    <strong>Area:</strong>
-    <%= productive_property.area %>
-  </p>
-
-  <p>
-    <strong>Space between rows:</strong>
-    <%= productive_property.space_between_rows %>
-  </p>
-
-  <p>
-    <strong>Space between rows unit:</strong>
-    <%= productive_property.space_between_rows_unit %>
-  </p>
-
-  <p>
-    <strong>Space between plants:</strong>
-    <%= productive_property.space_between_plants %>
-  </p>
-
-  <p>
-    <strong>Space between plants unit:</strong>
-    <%= productive_property.space_between_plants_unit %>
-  </p>
-
-  <%= productive_property.number_of_plants %>
-
 </div>

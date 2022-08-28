@@ -2,34 +2,24 @@
   kind_select_options = BusinessContact.kinds.keys.map { |kind| [I18n.t("words.#{kind}"), kind] }
 %>
 <%= form_with(model: business_contact) do |form| %>
-  <% if business_contact.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(business_contact.errors.count, "error") %> prohibited this business_contact from being saved:</h2>
-
-      <ul>
-        <% business_contact.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
+  <%= ApplicationHelper.model_error_alert(business_contact.errors) %>
 
   <div>
-    <%= form.label :name, style: "display: block" %>
-    <%= form.text_field :name %>
+    <%= form.label :nome_do_contato, class: 'form-label' %>
+    <%= form.text_field :name, class: 'form-control' %>
   </div>
 
-  <div>
-    <%= form.label :kind, style: "display: block" %>
-    <%= form.select :kind, kind_select_options %>
+  <div class="mt-3">
+    <%= form.label :tipo, class: 'form-label' %>
+    <%= form.select :kind, kind_select_options, {}, class: 'form-select' %>
   </div>
 
-  <div>
-    <%= form.label :email, style: "display: block" %>
-    <%= form.text_field :email %>
+  <div class="mt-3">
+    <%= form.label 'E-mail', class: 'form-label' %>
+    <%= form.text_field :email, class: 'form-control' %>
   </div>
 
-  <div>
-    <%= form.submit %>
+  <div class="d-flex justify-content-end mt-3">
+    <%= form.submit 'Salvar', class: 'btn btn-primary' %>
   </div>
 <% end %>

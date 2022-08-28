@@ -1,15 +1,16 @@
+<%
+  @productive_properties = @business_contact.productive_properties
+%>
+
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-  <h1 class="h2">Gerenciar</h1>
-  <div class="btn-toolbar mb-2 mb-md-0">
-    <%= link_to "Adicionar", new_productive_property_path, class: 'btn btn-sm btn-outline-secondary' %>
-  </div>
+  <h1 class="h5">Propridades produtivas</h1>
+  <%= link_to "Adicionar", new_productive_property_path, class: 'btn btn-sm btn-outline-secondary' %>
 </div>
 
 <table id="productive_properties" class="table table-hover">
   <thead>
     <tr>
       <th scope="col">Nome</th>
-      <th scope="col">Contato comercial</th>
       <th scope="col">Area</th>
       <th scope="col">Espaço colunas</th>
       <th scope="col">Espaço plantas</th>
@@ -22,7 +23,6 @@
   <% @productive_properties.each do |productive_property| %>
       <tr>
         <td scope="row"><%= productive_property.name %></td>
-        <td scope="row"><%= link_to productive_property.business_contact.name, productive_property.business_contact %></td>
         <td scope="row"><%= productive_property.area %> m²</td>
         <td scope="row"><%= productive_property.space_between_rows %> <%= productive_property.space_between_rows_unit %></td>
         <td scope="row"><%= productive_property.space_between_plants %> <%= productive_property.space_between_plants_unit %></td>

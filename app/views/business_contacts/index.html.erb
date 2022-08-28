@@ -1,14 +1,34 @@
-<p style="color: green"><%= notice %></p>
-
-<h1>Business contacts</h1>
-
-<div id="business_contacts">
-  <% @business_contacts.each do |business_contact| %>
-    <%= render business_contact %>
-    <p>
-      <%= link_to "Show this business contact", business_contact %>
-    </p>
-  <% end %>
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+  <h1 class="h2">Gerenciar</h1>
+  <div class="btn-toolbar mb-2 mb-md-0">
+    <%= link_to "Adicionar", new_business_contact_path, class: 'btn btn-sm btn-outline-secondary' %>
+  </div>
 </div>
 
-<%= link_to "New business contact", new_business_contact_path %>
+<table id="business_contacts" class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">Nome</th>
+      <th scope="col">Tipo</th>
+      <th scope="col">E-mail</th>
+      <th scope="col">Propriedades Produtivas</th>
+      <th scope="col">#</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @business_contacts.each do |business_contact| %>
+      <tr>
+        <td scope="row"><%= business_contact.name %></td>
+        <td scope="row"><%= business_contact.formated_kind_name %></td>
+        <td scope="row"><%= business_contact.email %></td>
+        <td scope="row"><%= business_contact.productive_properties.count %></td>
+        <td>
+          <%= link_to "Exibir", business_contact %> | 
+          <%= link_to "Editar", edit_business_contact_path(business_contact) %> | 
+          <%= link_to "Excluir", business_contact, method: :delete, data: { confirm: "Você tem certeza?" } %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
