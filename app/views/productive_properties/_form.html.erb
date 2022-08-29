@@ -13,7 +13,7 @@
 
  
   <div class="row">
-    <div class="mt-3 col-md-2">
+    <div class="mt-3 col-md-4">
       <%= form.label 'Área (em m²)', class: 'form-label' %>
       <%= form.number_field :area, class: 'form-control'  %>
     </div>
@@ -39,6 +39,13 @@
     </div>
   </div>
 
+  <div class="mt-3 col-md-12">
+    <%= form.label 'Especies de Planta', class: 'form-label' %><br>
+    <span class='small'>Segure a tecla CTRL e selecione as Especies de Planta que deseja associar</span>
+    <%= collection_select :productive_property, :plant_specy_ids, PlantSpecy.all, :id, :name, {},  {class: 'form-select', :multiple => true, :size => 5} %>
+  </div>
+
+  
   <div class="d-flex justify-content-end mt-3">
     <%= form.submit 'Salvar', class: 'btn btn-primary' %>
   </div>
