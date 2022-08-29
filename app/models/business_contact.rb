@@ -10,6 +10,8 @@ class BusinessContact < ApplicationRecord
   validates :email, presence: true, uniqueness: true, format: { with: VALID_EMAIL_REGEXP }
   validates :kind, presence: true, inclusion: { in: kinds.keys }
 
+  scope :filter_by_name_or_email, -> (search) { where("name LIKE :search OR email LIKE :search", search: "%#{search}%") }
+
   def formated_kind_name 
     I18n.t("words.#{kind}")
   end

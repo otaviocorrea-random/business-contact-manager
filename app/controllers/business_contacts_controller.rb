@@ -66,10 +66,11 @@ class BusinessContactsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def business_contact_params
-      params.require(:business_contact).permit(:name, :kind, :email)
+      params.require(:business_contact).permit(:name, :kind, :email, :search)
     end
 
     def set_filters
       @business_contacts = @business_contacts.order(:name)
+      @business_contacts = @business_contacts.filter_by_name_or_email(params[:search]) if params[:search].present?
     end
 end
