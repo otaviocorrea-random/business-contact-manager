@@ -31,7 +31,7 @@ class ProductivePropertiesController < ApplicationController
         format.json { render :show, status: :created, location: @productive_property }
       else
         format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @productive_property.errors, status: :unprocessable_entity }
+        format.json { render json: {errors: @productive_property.errors.full_messages}, status: :unprocessable_entity }
       end
     end
   end
@@ -51,10 +51,11 @@ class ProductivePropertiesController < ApplicationController
 
   # DELETE /productive_properties/1 or /productive_properties/1.json
   def destroy
+    business_contact = @productive_property.business_contact
     @productive_property.destroy
 
     respond_to do |format|
-      format.html { redirect_to productive_properties_url, notice: "Productive property was successfully destroyed." }
+      format.html { redirect_to business_contact, notice: "Productive property was successfully destroyed." }
       format.json { head :no_content }
     end
   end

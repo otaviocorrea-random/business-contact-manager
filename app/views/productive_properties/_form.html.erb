@@ -1,14 +1,10 @@
 <%
-  contact_select_options = BusinessContact.where(kind: :provider).map { |contact| [contact.name, contact.id] }
   messure_unit_select_options = [['Centimetros', :cm], ['Metros', :m]]
 %>
 <%= form_with(model: productive_property) do |form| %>
   <%= ApplicationHelper.model_error_alert(productive_property.errors) %>
 
-  <div class="mt-3">
-    <%= form.label :contato_comercial, class: 'form-label' %>
-    <%= form.select :business_contact_id, contact_select_options, {}, class: 'form-select' %>
-  </end>
+  <input type="hidden" name="productive_property[business_contact_id]" value="<%= @productive_property.business_contact_id || params[:business_contact_id] %>">
 
   <div class="mt-3">
     <%= form.label :nome, class: 'form-label' %>

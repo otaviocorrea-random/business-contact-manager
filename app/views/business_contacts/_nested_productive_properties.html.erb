@@ -1,11 +1,12 @@
 <%
   @productive_properties = @business_contact.productive_properties
 %>
-<input type="hidden" id='business_contact_id' name="business_contact_id" value="<%= @business_contact.id %>" />
+<input type="hidden" id='business_contact_id' value="<%= @business_contact.id %>" />
+<input type="hidden" id='business_contact_max_properties' value="<%= @business_contact.max_productive_properties %>" />
 
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
   <h1 class="h5">Propridades produtivas</h1>
-  <%= link_to "Adicionar", new_productive_property_path, class: 'btn btn-sm btn-outline-secondary' %>
+  <%= link_to "Adicionar", '#', class: 'btn btn-sm btn-outline-secondary', id: 'add_new_nested_property_btn' %>
 </div>
 
 <table id="nested_productive_properties" class="table table-hover">
