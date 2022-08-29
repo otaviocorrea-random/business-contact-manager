@@ -5,35 +5,37 @@
   </div>
 </div>
 
-<table id="productive_properties" class="table table-hover">
-  <thead>
-    <tr>
-      <th scope="col">Nome</th>
-      <th scope="col">Contato comercial</th>
-      <th scope="col">Area</th>
-      <th scope="col">Espaço colunas</th>
-      <th scope="col">Espaço plantas</th>
-      <th scope="col">Nº de Plantas</th>
-      <th scope="col">Especies</th>
-      <th scope="col">#</th>
-    </tr>
-  </thead>
-  <tbody>
-  <% @productive_properties.each do |productive_property| %>
+<div class="table-responsive">
+  <table id="productive_properties" class="table table-hover">
+    <thead>
       <tr>
-        <td scope="row"><%= productive_property.name %></td>
-        <td scope="row"><%= link_to productive_property.business_contact.name, productive_property.business_contact %></td>
-        <td scope="row"><%= productive_property.area %> m²</td>
-        <td scope="row"><%= productive_property.space_between_rows %> <%= productive_property.space_between_rows_unit %></td>
-        <td scope="row"><%= productive_property.space_between_plants %> <%= productive_property.space_between_plants_unit %></td>
-        <td scope="row"><%= productive_property.number_of_plants %></td>
-        <td scope="row"><%= productive_property.plant_species.count %></td>
-        <td>
-          <%= link_to "Exibir", productive_property %> | 
-          <%= link_to "Editar", edit_productive_property_path(productive_property) %> | 
-          <%= link_to "Excluir", productive_property, method: :delete, data: { confirm: "Você tem certeza?" } %>
-        </td>
+        <th scope="col">Nome</th>
+        <th scope="col">Contato comercial</th>
+        <th scope="col">Area</th>
+        <th scope="col">Espaço colunas</th>
+        <th scope="col">Espaço plantas</th>
+        <th scope="col">Nº de Plantas</th>
+        <th scope="col">Especies</th>
+        <th scope="col">#</th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+    <tbody>
+    <% @productive_properties.each do |productive_property| %>
+        <tr>
+          <td scope="row"><%= productive_property.name %></td>
+          <td scope="row"><%= link_to productive_property.business_contact.name, productive_property.business_contact %></td>
+          <td scope="row"><%= productive_property.area %> m²</td>
+          <td scope="row"><%= productive_property.space_between_rows %> <%= productive_property.space_between_rows_unit %></td>
+          <td scope="row"><%= productive_property.space_between_plants %> <%= productive_property.space_between_plants_unit %></td>
+          <td scope="row"><%= productive_property.number_of_plants %></td>
+          <td scope="row"><%= productive_property.plant_species.count %></td>
+          <td>
+            <%= link_to "Exibir", productive_property %> | 
+            <%= link_to "Editar", edit_productive_property_path(productive_property) %> | 
+            <%= link_to "Excluir", productive_property, method: :delete, data: { confirm: "Você tem certeza?" } %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

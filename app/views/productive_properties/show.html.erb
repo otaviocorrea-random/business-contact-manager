@@ -15,21 +15,23 @@
   <h5 class="h5">Especies de Planta</h5>
 </div>
 
-<table id="plant_species" class="table table-hover">
-  <thead>
-    <tr>
-      <th scope="col">Nome da Planta</th>
-      <th scope="col">#</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @productive_property.plant_species.each do |plant_specy| %>
+<div class="table-responsive">
+  <table id="plant_species" class="table table-hover">
+    <thead>
       <tr>
-        <td scope="row"><%= plant_specy.name %></td>
-        <td>
-          <%= link_to "Exibir", plant_specy %>
-        </td>
+        <th scope="col">Nome da Planta</th>
+        <th scope="col">#</th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+    <tbody>
+      <% @productive_property.plant_species.each do |plant_specy| %>
+        <tr>
+          <td scope="row"><%= plant_specy.name %></td>
+          <td>
+            <%= link_to "Exibir", plant_specy %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

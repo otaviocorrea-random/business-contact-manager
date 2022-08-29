@@ -5,23 +5,25 @@
   </div>
 </div>
 
-<table id="plant_species" class="table table-hover">
-  <thead>
-    <tr>
-      <th scope="col">Nome da Planta</th>
-      <th scope="col">#</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @plant_species.each do |plant_specy| %>
+<div class="table-responsive">
+  <table id="plant_species" class="table table-hover">
+    <thead>
       <tr>
-        <td scope="row"><%= plant_specy.name %></td>
-        <td>
-          <%= link_to "Exibir", plant_specy %> | 
-          <%= link_to "Editar", edit_plant_specy_path(plant_specy) %> | 
-          <%= link_to "Excluir", plant_specy, method: :delete, data: { confirm: "Você tem certeza?" } %>
-        </td>
+        <th scope="col">Nome da Planta</th>
+        <th scope="col">#</th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+    <tbody>
+      <% @plant_species.each do |plant_specy| %>
+        <tr>
+          <td scope="row"><%= plant_specy.name %></td>
+          <td>
+            <%= link_to "Exibir", plant_specy %> | 
+            <%= link_to "Editar", edit_plant_specy_path(plant_specy) %> | 
+            <%= link_to "Excluir", plant_specy, method: :delete, data: { confirm: "Você tem certeza?" } %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
