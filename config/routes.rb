@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  root to: "auth#login"
+
   resources :plant_species
   resources :productive_properties
   resources :business_contacts
