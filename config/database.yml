@@ -50,6 +50,4 @@ test:
 #
 production:
   <<: *default
-  database: business_contacts_manager_production
-  username: business_contacts_manager
-  password: <%= ENV["BUSINESS_CONTACTS_MANAGER_DATABASE_PASSWORD"] %>
+  url: <%= ENV["DATABASE_URL"] %>
