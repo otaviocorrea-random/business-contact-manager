@@ -3,9 +3,8 @@ require 'rails_helper'
 RSpec.describe "Auths", type: :request do
   describe "GET /login" do
     it "returns http success" do
-      get "/auth/login"
+      get "/"
       expect(response).to have_http_status(:success)
     end
   end
-
 end
