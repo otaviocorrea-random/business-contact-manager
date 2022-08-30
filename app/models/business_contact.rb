@@ -1,7 +1,7 @@
 class BusinessContact < ApplicationRecord
   include RegexHelper
 
-  enum :kind, [:client, :provider], scopes: false, default: :client
+  enum :kind, [:client, :provider], default: :client
   
   has_many :productive_properties, dependent: :destroy
   validate :max_productive_properties_validation
