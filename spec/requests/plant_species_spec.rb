@@ -18,11 +18,11 @@ RSpec.describe "/plant_species", type: :request do
   # PlantSpecy. As you add validations to PlantSpecy, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
+    {name: Faker::Food.vegetables}
   }
 
   let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
+    {name: nil}
   }
 
   describe "GET /index" do
@@ -77,9 +77,9 @@ RSpec.describe "/plant_species", type: :request do
         }.to change(PlantSpecy, :count).by(0)
       end
 
-      it "renders a successful response (i.e. to display the 'new' template)" do
+      it "renders a fail response (i.e. to display the 'new' template)" do
         post plant_species_url, params: { plant_specy: invalid_attributes }
-        expect(response).to be_successful
+        expect(response).to_not be_successful
       end
     end
   end
@@ -87,14 +87,14 @@ RSpec.describe "/plant_species", type: :request do
   describe "PATCH /update" do
     context "with valid parameters" do
       let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
+        {name: Faker::Food.vegetables}
       }
 
       it "updates the requested plant_specy" do
         plant_specy = PlantSpecy.create! valid_attributes
         patch plant_specy_url(plant_specy), params: { plant_specy: new_attributes }
         plant_specy.reload
-        skip("Add assertions for updated state")
+        expect(plant_specy.name).to eq(new_attributes[:name])
       end
 
       it "redirects to the plant_specy" do
@@ -106,10 +106,10 @@ RSpec.describe "/plant_species", type: :request do
     end
 
     context "with invalid parameters" do
-      it "renders a successful response (i.e. to display the 'edit' template)" do
+      it "renders a fail response (i.e. to display the 'edit' template)" do
         plant_specy = PlantSpecy.create! valid_attributes
         patch plant_specy_url(plant_specy), params: { plant_specy: invalid_attributes }
-        expect(response).to be_successful
+        expect(response).to_not be_successful
       end
     end
   end

@@ -18,11 +18,11 @@ RSpec.describe "/business_contacts", type: :request do
   # BusinessContact. As you add validations to BusinessContact, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
+    JSON.parse(build(:business_contact).to_json)
   }
 
   let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
+    JSON.parse(build(:business_contact, email: 'teste').to_json)
   }
 
   describe "GET /index" do
@@ -77,9 +77,9 @@ RSpec.describe "/business_contacts", type: :request do
         }.to change(BusinessContact, :count).by(0)
       end
 
-      it "renders a successful response (i.e. to display the 'new' template)" do
+      it "renders a fail response (i.e. to display the 'new' template)" do
         post business_contacts_url, params: { business_contact: invalid_attributes }
-        expect(response).to be_successful
+        expect(response).to_not be_successful
       end
     end
   end
@@ -87,14 +87,16 @@ RSpec.describe "/business_contacts", type: :request do
   describe "PATCH /update" do
     context "with valid parameters" do
       let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
+        JSON.parse(build(:business_contact, :provider).to_json)
       }
 
       it "updates the requested business_contact" do
         business_contact = BusinessContact.create! valid_attributes
         patch business_contact_url(business_contact), params: { business_contact: new_attributes }
         business_contact.reload
-        skip("Add assertions for updated state")
+        expect(business_contact.name).to eq(new_attributes['name'])
+        expect(business_contact.email).to eq(new_attributes['email'])
+        expect(business_contact.kind).to eq(new_attributes['kind'])
       end
 
       it "redirects to the business_contact" do
@@ -106,10 +108,10 @@ RSpec.describe "/business_contacts", type: :request do
     end
 
     context "with invalid parameters" do
-      it "renders a successful response (i.e. to display the 'edit' template)" do
+      it "renders a fail response (i.e. to display the 'edit' template)" do
         business_contact = BusinessContact.create! valid_attributes
         patch business_contact_url(business_contact), params: { business_contact: invalid_attributes }
-        expect(response).to be_successful
+        expect(response).to_not be_successful
       end
     end
   end

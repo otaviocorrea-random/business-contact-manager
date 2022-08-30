@@ -13,16 +13,17 @@ require 'rails_helper'
 # sticking to rails and rspec-rails APIs to keep things simple and stable.
 
 RSpec.describe "/productive_properties", type: :request do
+  let!(:business_contact) { create(:business_contact, :provider) }
   
   # This should return the minimal set of attributes required to create a valid
   # ProductiveProperty. As you add validations to ProductiveProperty, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
+    JSON.parse(build(:productive_property, business_contact_id: business_contact.id ).to_json)
   }
 
   let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
+    JSON.parse(build(:productive_property).to_json)
   }
 
   describe "GET /index" do
@@ -77,9 +78,9 @@ RSpec.describe "/productive_properties", type: :request do
         }.to change(ProductiveProperty, :count).by(0)
       end
 
-      it "renders a successful response (i.e. to display the 'new' template)" do
+      it "renders a fail response (i.e. to display the 'new' template)" do
         post productive_properties_url, params: { productive_property: invalid_attributes }
-        expect(response).to be_successful
+        expect(response).to_not be_successful
       end
     end
   end
@@ -87,14 +88,19 @@ RSpec.describe "/productive_properties", type: :request do
   describe "PATCH /update" do
     context "with valid parameters" do
       let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
+        JSON.parse(build(:productive_property, business_contact_id: business_contact.id ).to_json)
       }
 
       it "updates the requested productive_property" do
         productive_property = ProductiveProperty.create! valid_attributes
         patch productive_property_url(productive_property), params: { productive_property: new_attributes }
         productive_property.reload
-        skip("Add assertions for updated state")
+        expect(productive_property.name).to eq(new_attributes['name'])
+        expect(productive_property.area).to eq(new_attributes['area'])
+        expect(productive_property.space_between_rows).to eq(new_attributes['space_between_rows'])
+        expect(productive_property.space_between_rows_unit).to eq(new_attributes['space_between_rows_unit'])
+        expect(productive_property.space_between_plants).to eq(new_attributes['space_between_plants'])
+        expect(productive_property.space_between_plants_unit).to eq(new_attributes['space_between_plants_unit'])
       end
 
       it "redirects to the productive_property" do
@@ -106,10 +112,10 @@ RSpec.describe "/productive_properties", type: :request do
     end
 
     context "with invalid parameters" do
-      it "renders a successful response (i.e. to display the 'edit' template)" do
+      it "renders a fail response (i.e. to display the 'edit' template)" do
         productive_property = ProductiveProperty.create! valid_attributes
         patch productive_property_url(productive_property), params: { productive_property: invalid_attributes }
-        expect(response).to be_successful
+        expect(response).to_not be_successful
       end
     end
   end
@@ -124,8 +130,9 @@ RSpec.describe "/productive_properties", type: :request do
 
     it "redirects to the productive_properties list" do
       productive_property = ProductiveProperty.create! valid_attributes
+      contact = productive_property.business_contact
       delete productive_property_url(productive_property)
-      expect(response).to redirect_to(productive_properties_url)
+      expect(response).to redirect_to(contact)
     end
   end
 end
